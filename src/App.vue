@@ -43,9 +43,9 @@ export default {
     }
   },
   computed: {
-     storedEvents() {
-        this.$store.state.events
-     }
+    storedEvents () {
+      return this.$store.state.events
+    }
   },
   methods: {
     submitNewEvent () {
