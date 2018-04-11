@@ -20,7 +20,7 @@
 
     <section>
       <ol v-if="events.length > 0">
-        <li v-for="event, index in events" :key="index">
+        <li v-for="(event, index) in events" :key="index">
           <h2><time v-text="formatDate(event.date)"/></h2>
           <h3 v-text="event.title"/>
           <p v-text="event.details"/>
@@ -34,17 +34,16 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       events: [],
-      eventDate:'',
-      eventTitle:'',
-      eventDetails:'',
+      eventDate: '',
+      eventTitle: '',
+      eventDetails: ''
     }
   },
   methods: {
-    submitNewEvent() {
-
+    submitNewEvent () {
       let event = {
         date: new Date(this.eventDate),
         title: this.eventTitle,
@@ -54,14 +53,18 @@ export default {
       this.events.push(event)
       this.clearInputs()
     },
-    clearInputs() {
-      this.eventDate = this.eventTitle = this.eventDetails = ""
+    clearInputs () {
+      this.eventDate = this.eventTitle = this.eventDetails = ''
     },
-    formatDate(eventDate) {
-      let options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
-      return eventDate.toLocaleDateString('en-GB',options)
+    formatDate (eventDate) {
+      let options = {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }
+      return eventDate.toLocaleDateString('en-GB', options)
     }
   }
 }
 </script>
-
