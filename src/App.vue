@@ -37,17 +37,25 @@ export default {
   data() {
     return {
       events: [],
-      newEvent: {
-        date: "",
-        title: "",
-        details: ""
-      }
+      eventDate:'',
+      eventTitle:'',
+      eventDetails:'',
     }
   },
   methods: {
     submitNewEvent() {
-      this.newEvent.date = new Date(this.newEvent.date)
-      this.events.push(this.newEvent)
+
+      let event = {
+        date: new Date(this.eventDate),
+        title: this.eventTitle,
+        details: this.eventDetails
+      }
+
+      this.events.push(event)
+      this.clearInputs()
+    },
+    clearInputs() {
+      this.eventDate = this.eventTitle = this.eventDetails = ""
     },
     formatDate(eventDate) {
       let options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
