@@ -1,4 +1,4 @@
-<template>
+/* eslint-disable */<template>
   <main>
     <header>
       <h1>Your Timeline</h1>
@@ -28,7 +28,7 @@
       </ol>
       <p v-else>You gots nothing :(</p>
     </section>
-
+  hi i am {{storedEvents}}
   </main>
 </template>
 
@@ -42,6 +42,11 @@ export default {
       eventDetails: ''
     }
   },
+  computed: {
+     storedEvents() {
+        this.$store.state.events
+     }
+  },
   methods: {
     submitNewEvent () {
       let event = {
@@ -50,7 +55,8 @@ export default {
         details: this.eventDetails
       }
 
-      this.events.push(event)
+      // this.events.push(event)
+      this.$store.commit('addEvent', event)
       this.clearInputs()
     },
     clearInputs () {
